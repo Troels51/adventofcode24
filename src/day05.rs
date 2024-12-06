@@ -18,8 +18,7 @@ pub fn solve(contents: &String) -> std::io::Result<(i64, i64)> {
         .lines()
         .map(|line| -> Vec<u8> { line.split(',').map(|s| s.parse::<u8>().unwrap()).collect() })
         .collect();
-    
-    let (updates_following_rules, mut updates_not_following_rules): (Vec<Vec<u8>>, Vec<Vec<u8>>) =
+    let (mut updates_not_following_rules,updates_following_rules ): (Vec<Vec<u8>>, Vec<Vec<u8>>) =
         updates.into_iter().partition(|update| {
             page_ordering_rules
                 .iter()

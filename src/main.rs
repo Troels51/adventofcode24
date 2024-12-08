@@ -3,7 +3,7 @@
 #![feature(ascii_char)]
 use std::{fs::File, io::{self, Read}, path::Path};
 
-use advent24::{day01, day02, day03, day04, day05, day06};
+use advent24::{day01, day02, day03, day04, day05, day06, day07};
 use utils::get_problem_input;
 
 
@@ -22,5 +22,7 @@ fn main() -> std::io::Result<()>{
     println!("Day05 solution = Part1: {} , Part2: {}", solution.0, solution.1);
     let solution = day06::solve(&get_problem_input(Path::new("input/day06.txt"))?).unwrap();
     println!("Day06 solution = Part1: {} , Part2: {}", solution.0, solution.1);
+    let solution = day07::solve(&get_problem_input(Path::new("input/day07.txt"))?).unwrap();
+    println!("Day07 solution = Part1: {} , Part2: {}", solution.0, solution.1);
     Ok(())
 }

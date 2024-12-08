@@ -45,7 +45,7 @@ fn check_rule(rule: (u8, u8), update: &Vec<u8>) -> bool {
     let mut found_second = false;
     for page in update {
         if *page == rule.0 {
-            if (found_second) {
+            if found_second {
                 return false;
             } else {
                 return true;

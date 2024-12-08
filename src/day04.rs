@@ -1,8 +1,3 @@
-use std::{fs::File, io::Read, sync::Arc};
-
-use core::simd::prelude::*;
-use itertools::Itertools;
-use regex::Regex;
 
 pub fn solve(contents: &String) -> std::io::Result<(i64, i64)> {
     let lines: Vec<Vec<char>> = contents
@@ -43,7 +38,10 @@ pub fn solve(contents: &String) -> std::io::Result<(i64, i64)> {
         .flatten()
         .collect();
     let part1: u32 = xs.iter().map(|x| check_xmas(&lines, *x)).sum();
-    let part2: u32 = a_s.iter().map(|a| if check_mas(&lines, *a) { 1} else {0}).sum();
+    let part2: u32 = a_s
+        .iter()
+        .map(|a| if check_mas(&lines, *a) { 1 } else { 0 })
+        .sum();
 
     Ok((part1.into(), part2.into()))
 }

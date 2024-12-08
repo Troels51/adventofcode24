@@ -2,6 +2,7 @@ use std::{borrow::BorrowMut, cmp::Ordering, collections::HashSet, fs::File, io::
 
 use core::simd::prelude::*;
 use itertools::Itertools;
+use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use regex::Regex;
 #[derive(Debug, PartialEq, Eq, Hash, Clone)]
 enum MapComponent {
@@ -55,7 +56,7 @@ fn part2(map: &Vec<Vec<MapComponent>>, positions_visited: HashSet<(usize, usize)
     // We only need to put an obstacle in the positions_visited because the guard will never reach encounter an obstacle in any other place
     // TODO: We can do even less if we keep the direction the guard was going in position_visited, then we just start from that position and direction
     // And check for loop there
-    positions_visited.iter().filter(|position| {
+    positions_visited.par_iter().filter(|position| {
         let mut new_map = map.clone(); // I could skip this clone by just passing the position and map to check_for_loop
         new_map[position.1][position.0] = MapComponent::Obstacle;
         check_for_loop(new_map, current_guard_pos)
